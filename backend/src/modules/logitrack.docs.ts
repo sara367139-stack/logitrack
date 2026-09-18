@@ -207,15 +207,16 @@
  *       403: { $ref: '#/components/responses/ForbiddenError' }
  *       404: { $ref: '#/components/responses/NotFoundError' }
  *       500: { $ref: '#/components/responses/InternalServerError' }
+ */
  *
  * /api/v1 / notifications:
  * get:
  * tags: [Notifications]
-    * summary: List notifications
-        * description: Returns the authenticated user's paginated notifications.
-            * security: [{ bearerAuth: [] }]
-                * parameters: [{ $ref: '#/components/parameters/Page' }, { $ref: '#/components/parameters/PageSize' }, { $ref: '#/components/parameters/Search' }]
-                    * responses:
+   * summary: List notifications
+      * description: Returns the authenticated user's paginated notifications.
+         * security: [{ bearerAuth: [] }]
+            * parameters: [{ $ref: '#/components/parameters/Page' }, { $ref: '#/components/parameters/PageSize' }, { $ref: '#/components/parameters/Search' }]
+               * responses:
  * 200: { description: Notifications returned, content: { application / json: { schema: { $ref: '#/components/schemas/SuccessResponse' } } } }
  * 400: { $ref: '#/components/responses/ValidationError' }
  * 401: { $ref: '#/components/responses/UnauthorizedError' }
@@ -225,11 +226,11 @@
  * /api/v1 / notifications / { id } / read:
  * patch:
  * tags: [Notifications]
-    * summary: Mark a notification as read
-        * description: Marks one notification as read for the authenticated user.
+   * summary: Mark a notification as read
+      * description: Marks one notification as read for the authenticated user.
  * security: [{ bearerAuth: [] }]
-        * parameters: [{ $ref: '#/components/parameters/Id' }]
-            * responses:
+      * parameters: [{ $ref: '#/components/parameters/Id' }]
+         * responses:
  * 200: { description: Notification marked read, content: { application / json: { schema: { $ref: '#/components/schemas/MessageResponse' } } } }
  * 400: { $ref: '#/components/responses/ValidationError' }
  * 401: { $ref: '#/components/responses/UnauthorizedError' }
@@ -239,10 +240,10 @@
  * /api/v1 / notifications / read - all:
  * post:
  * tags: [Notifications]
-    * summary: Mark all notifications as read
-        * description: Marks every notification for the authenticated user as read.
+   * summary: Mark all notifications as read
+      * description: Marks every notification for the authenticated user as read.
  * security: [{ bearerAuth: [] }]
-        * responses:
+      * responses:
  * 200: { description: Notifications marked read, content: { application / json: { schema: { $ref: '#/components/schemas/MessageResponse' } } } }
  * 400: { $ref: '#/components/responses/ValidationError' }
  * 401: { $ref: '#/components/responses/UnauthorizedError' }
@@ -252,11 +253,11 @@
  * /api/v1 / audit:
  * get:
  * tags: [Audit]
-    * summary: List audit logs
-        * description: Returns a paginated audit history for the tenant.
+   * summary: List audit logs
+      * description: Returns a paginated audit history for the tenant.
  * security: [{ bearerAuth: [] }]
-        * parameters: [{ $ref: '#/components/parameters/Page' }, { $ref: '#/components/parameters/PageSize' }, { $ref: '#/components/parameters/Search' }, { name: entityType, in: query, schema: { type: string } }, { name: action, in: query, schema: { type: string } }, { name: userId, in: query, schema: { type: string, format: uuid } }, { name: fromDate, in: query, schema: { type: string, format: date - time } }, { name: toDate, in: query, schema: { type: string, format: date - time } }]
-            * responses:
+      * parameters: [{ $ref: '#/components/parameters/Page' }, { $ref: '#/components/parameters/PageSize' }, { $ref: '#/components/parameters/Search' }, { name: entityType, in: query, schema: { type: string } }, { name: action, in: query, schema: { type: string } }, { name: userId, in: query, schema: { type: string, format: uuid } }, { name: fromDate, in: query, schema: { type: string, format: date - time } }, { name: toDate, in: query, schema: { type: string, format: date - time } }]
+         * responses:
  * 200: { description: Audit logs returned, content: { application / json: { schema: { $ref: '#/components/schemas/SuccessResponse' } } } }
  * 400: { $ref: '#/components/responses/ValidationError' }
  * 401: { $ref: '#/components/responses/UnauthorizedError' }
@@ -267,10 +268,10 @@
  * /api/v1 / dashboard / summary:
  * get:
  * tags: [Dashboard]
-    * summary: Get dashboard summary
-        * description: Returns the key inventory and order metrics for the tenant.
+   * summary: Get dashboard summary
+      * description: Returns the key inventory and order metrics for the tenant.
  * security: [{ bearerAuth: [] }]
-        * responses:
+      * responses:
  * 200: { description: Summary returned, content: { application / json: { schema: { $ref: '#/components/schemas/DashboardSummary' } } } }
  * 400: { $ref: '#/components/responses/ValidationError' }
  * 401: { $ref: '#/components/responses/UnauthorizedError' }
@@ -280,11 +281,11 @@
  * /api/v1 / dashboard / activity:
  * get:
  * tags: [Dashboard]
-    * summary: Get recent activity
-        * description: Returns recent inventory and order activity.
+   * summary: Get recent activity
+      * description: Returns recent inventory and order activity.
  * security: [{ bearerAuth: [] }]
-    * parameters: [{ name: limit, in: query, schema: { type: integer, minimum: 1, default: 20 } }]
-        * responses:
+   * parameters: [{ name: limit, in: query, schema: { type: integer, minimum: 1, default: 20 } }]
+      * responses:
  * 200: { description: Activity returned, content: { application / json: { schema: { $ref: '#/components/schemas/SuccessResponse' } } } }
  * 400: { $ref: '#/components/responses/ValidationError' }
  * 401: { $ref: '#/components/responses/UnauthorizedError' }
@@ -294,10 +295,10 @@
  * /api/v1 / dashboard / stock - alerts:
  * get:
  * tags: [Dashboard]
-    * summary: Get stock alerts
-        * description: Returns current low - stock alerts.
+   * summary: Get stock alerts
+      * description: Returns current low - stock alerts.
  * security: [{ bearerAuth: [] }]
-    * responses:
+   * responses:
  * 200: { description: Alerts returned, content: { application / json: { schema: { $ref: '#/components/schemas/SuccessResponse' } } } }
  * 400: { $ref: '#/components/responses/ValidationError' }
  * 401: { $ref: '#/components/responses/UnauthorizedError' }
@@ -307,11 +308,11 @@
  * /api/v1 / reports / inventory - value:
  * get:
  * tags: [Reports]
-    * summary: Get inventory value report
-        * description: Calculates inventory value for an optional date range.
+   * summary: Get inventory value report
+      * description: Calculates inventory value for an optional date range.
  * security: [{ bearerAuth: [] }]
-    * parameters: [{ $ref: '#/components/parameters/From' }, { $ref: '#/components/parameters/To' }]
-        * responses:
+   * parameters: [{ $ref: '#/components/parameters/From' }, { $ref: '#/components/parameters/To' }]
+      * responses:
  * 200: { description: Report returned, content: { application / json: { schema: { $ref: '#/components/schemas/SuccessResponse' } } } }
  * 400: { $ref: '#/components/responses/ValidationError' }
  * 401: { $ref: '#/components/responses/UnauthorizedError' }
@@ -321,11 +322,11 @@
  * /api/v1 / reports / stock - movement:
  * get:
  * tags: [Reports]
-    * summary: Get stock movement report
-        * description: Returns stock movement grouped for an optional date range.
+   * summary: Get stock movement report
+      * description: Returns stock movement grouped for an optional date range.
  * security: [{ bearerAuth: [] }]
-    * parameters: [{ $ref: '#/components/parameters/From' }, { $ref: '#/components/parameters/To' }]
-        * responses:
+   * parameters: [{ $ref: '#/components/parameters/From' }, { $ref: '#/components/parameters/To' }]
+      * responses:
  * 200: { description: Report returned, content: { application / json: { schema: { $ref: '#/components/schemas/SuccessResponse' } } } }
  * 400: { $ref: '#/components/responses/ValidationError' }
  * 401: { $ref: '#/components/responses/UnauthorizedError' }
@@ -335,11 +336,11 @@
  * /api/v1 / reports / receiving:
  * get:
  * tags: [Reports]
-    * summary: Get receiving report
-        * description: Returns receiving activity grouped for an optional date range.
+   * summary: Get receiving report
+      * description: Returns receiving activity grouped for an optional date range.
  * security: [{ bearerAuth: [] }]
-    * parameters: [{ $ref: '#/components/parameters/From' }, { $ref: '#/components/parameters/To' }]
-        * responses:
+   * parameters: [{ $ref: '#/components/parameters/From' }, { $ref: '#/components/parameters/To' }]
+      * responses:
  * 200: { description: Report returned, content: { application / json: { schema: { $ref: '#/components/schemas/SuccessResponse' } } } }
  * 400: { $ref: '#/components/responses/ValidationError' }
  * 401: { $ref: '#/components/responses/UnauthorizedError' }
@@ -349,11 +350,11 @@
  * /api/v1 / reports / dispatch:
  * get:
  * tags: [Reports]
-    * summary: Get dispatch report
-        * description: Returns dispatch activity grouped for an optional date range.
+   * summary: Get dispatch report
+      * description: Returns dispatch activity grouped for an optional date range.
  * security: [{ bearerAuth: [] }]
-    * parameters: [{ $ref: '#/components/parameters/From' }, { $ref: '#/components/parameters/To' }]
-        * responses:
+   * parameters: [{ $ref: '#/components/parameters/From' }, { $ref: '#/components/parameters/To' }]
+      * responses:
  * 200: { description: Report returned, content: { application / json: { schema: { $ref: '#/components/schemas/SuccessResponse' } } } }
  * 400: { $ref: '#/components/responses/ValidationError' }
  * 401: { $ref: '#/components/responses/UnauthorizedError' }
@@ -363,11 +364,11 @@
  * /api/v1 / reports / slow - moving:
  * get:
  * tags: [Reports]
-    * summary: Get slow - moving products report
-        * description: Returns products with low movement over a configurable period.
+   * summary: Get slow - moving products report
+      * description: Returns products with low movement over a configurable period.
  * security: [{ bearerAuth: [] }]
-    * parameters: [{ name: days, in: query, schema: { type: integer, minimum: 1, default: 90 } }]
-        * responses:
+   * parameters: [{ name: days, in: query, schema: { type: integer, minimum: 1, default: 90 } }]
+      * responses:
  * 200: { description: Report returned, content: { application / json: { schema: { $ref: '#/components/schemas/SuccessResponse' } } } }
  * 400: { $ref: '#/components/responses/ValidationError' }
  * 401: { $ref: '#/components/responses/UnauthorizedError' }
@@ -377,10 +378,10 @@
  * /api/v1 / reports /export.csv:
  * get:
  * tags: [Reports]
-    * summary: Export inventory as CSV
-        * description: Downloads the inventory report as a CSV attachment.
+   * summary: Export inventory as CSV
+      * description: Downloads the inventory report as a CSV attachment.
  * security: [{ bearerAuth: [] }]
-    * responses:
+   * responses:
  * 200: { $ref: '#/components/responses/CsvResponse' }
  * 400: { $ref: '#/components/responses/ValidationError' }
  * 401: { $ref: '#/components/responses/UnauthorizedError' }
@@ -390,11 +391,11 @@
  * /api/v1 / purchase - orders:
  * get:
  * tags: [Purchase Orders]
-    * summary: List purchase orders
-        * description: Returns a paginated purchase order list.
+   * summary: List purchase orders
+      * description: Returns a paginated purchase order list.
  * security: [{ bearerAuth: [] }]
-    * parameters: [{ $ref: '#/components/parameters/Page' }, { $ref: '#/components/parameters/PageSize' }, { $ref: '#/components/parameters/Search' }]
-        * responses:
+   * parameters: [{ $ref: '#/components/parameters/Page' }, { $ref: '#/components/parameters/PageSize' }, { $ref: '#/components/parameters/Search' }]
+      * responses:
  * 200: { description: Purchase orders returned, content: { application / json: { schema: { $ref: '#/components/schemas/SuccessResponse' } } } }
  * 400: { $ref: '#/components/responses/ValidationError' }
  * 401: { $ref: '#/components/responses/UnauthorizedError' }
@@ -403,10 +404,10 @@
  * 500: { $ref: '#/components/responses/InternalServerError' }
  * post:
  * tags: [Purchase Orders]
-    * summary: Create a purchase order
-        * description: Creates a draft purchase order with line items.
+   * summary: Create a purchase order
+      * description: Creates a draft purchase order with line items.
  * security: [{ bearerAuth: [] }]
-    * requestBody: { required: true, content: { application / json: { schema: { $ref: '#/components/schemas/PurchaseOrderRequest' } } } }
+   * requestBody: { required: true, content: { application / json: { schema: { $ref: '#/components/schemas/PurchaseOrderRequest' } } } }
  * responses:
  * 201: { description: Purchase order created, content: { application / json: { schema: { $ref: '#/components/schemas/PurchaseOrder' } } } }
  * 400: { $ref: '#/components/responses/ValidationError' }
@@ -417,11 +418,11 @@
  * /api/v1 / purchase - orders / { id }:
  * get:
  * tags: [Purchase Orders]
-    * summary: Get a purchase order
-        * description: Returns a purchase order and its items.
+   * summary: Get a purchase order
+      * description: Returns a purchase order and its items.
  * security: [{ bearerAuth: [] }]
-    * parameters: [{ $ref: '#/components/parameters/Id' }]
-        * responses:
+   * parameters: [{ $ref: '#/components/parameters/Id' }]
+      * responses:
  * 200: { description: Purchase order returned, content: { application / json: { schema: { $ref: '#/components/schemas/PurchaseOrder' } } } }
  * 400: { $ref: '#/components/responses/ValidationError' }
  * 401: { $ref: '#/components/responses/UnauthorizedError' }
@@ -430,11 +431,11 @@
  * 500: { $ref: '#/components/responses/InternalServerError' }
  * patch:
  * tags: [Purchase Orders]
-    * summary: Update a purchase order
-        * description: Updates an editable purchase order.
+   * summary: Update a purchase order
+      * description: Updates an editable purchase order.
  * security: [{ bearerAuth: [] }]
-    * parameters: [{ $ref: '#/components/parameters/Id' }]
-        * requestBody: { required: true, content: { application / json: { schema: { $ref: '#/components/schemas/PurchaseOrderRequest' } } } }
+   * parameters: [{ $ref: '#/components/parameters/Id' }]
+      * requestBody: { required: true, content: { application / json: { schema: { $ref: '#/components/schemas/PurchaseOrderRequest' } } } }
  * responses:
  * 200: { description: Purchase order updated, content: { application / json: { schema: { $ref: '#/components/schemas/PurchaseOrder' } } } }
  * 400: { $ref: '#/components/responses/ValidationError' }
@@ -445,11 +446,11 @@
  * /api/v1 / purchase - orders / { id } / submit:
  * post:
  * tags: [Purchase Orders]
-    * summary: Submit a purchase order
-        * description: Moves a draft purchase order to submitted status.
+   * summary: Submit a purchase order
+      * description: Moves a draft purchase order to submitted status.
  * security: [{ bearerAuth: [] }]
-    * parameters: [{ $ref: '#/components/parameters/Id' }]
-        * responses:
+   * parameters: [{ $ref: '#/components/parameters/Id' }]
+      * responses:
  * 200: { description: Purchase order submitted, content: { application / json: { schema: { $ref: '#/components/schemas/PurchaseOrder' } } } }
  * 400: { $ref: '#/components/responses/ValidationError' }
  * 401: { $ref: '#/components/responses/UnauthorizedError' }
@@ -459,11 +460,11 @@
  * /api/v1 / purchase - orders / { id } / approve:
  * post:
  * tags: [Purchase Orders]
-    * summary: Approve a purchase order
-        * description: Approves a submitted purchase order.
+   * summary: Approve a purchase order
+      * description: Approves a submitted purchase order.
  * security: [{ bearerAuth: [] }]
-    * parameters: [{ $ref: '#/components/parameters/Id' }]
-        * responses:
+   * parameters: [{ $ref: '#/components/parameters/Id' }]
+      * responses:
  * 200: { description: Purchase order approved, content: { application / json: { schema: { $ref: '#/components/schemas/PurchaseOrder' } } } }
  * 400: { $ref: '#/components/responses/ValidationError' }
  * 401: { $ref: '#/components/responses/UnauthorizedError' }
@@ -473,11 +474,11 @@
  * /api/v1 / purchase - orders / { id } / cancel:
  * post:
  * tags: [Purchase Orders]
-    * summary: Cancel a purchase order
-        * description: Cancels a purchase order that has not been fully received.
+   * summary: Cancel a purchase order
+      * description: Cancels a purchase order that has not been fully received.
  * security: [{ bearerAuth: [] }]
-    * parameters: [{ $ref: '#/components/parameters/Id' }]
-        * responses:
+   * parameters: [{ $ref: '#/components/parameters/Id' }]
+      * responses:
  * 200: { description: Purchase order cancelled, content: { application / json: { schema: { $ref: '#/components/schemas/PurchaseOrder' } } } }
  * 400: { $ref: '#/components/responses/ValidationError' }
  * 401: { $ref: '#/components/responses/UnauthorizedError' }
@@ -487,11 +488,11 @@
  * /api/v1 / purchase - orders / { id } / receive:
  * post:
  * tags: [Purchase Orders]
-    * summary: Receive a purchase order
-        * description: Records received line items into a warehouse location.
+   * summary: Receive a purchase order
+      * description: Records received line items into a warehouse location.
  * security: [{ bearerAuth: [] }]
-    * parameters: [{ $ref: '#/components/parameters/Id' }]
-        * requestBody: { required: true, content: { application / json: { schema: { $ref: '#/components/schemas/ReceivePurchaseOrderRequest' } } } }
+   * parameters: [{ $ref: '#/components/parameters/Id' }]
+      * requestBody: { required: true, content: { application / json: { schema: { $ref: '#/components/schemas/ReceivePurchaseOrderRequest' } } } }
  * responses:
  * 200: { description: Receipt recorded, content: { application / json: { schema: { $ref: '#/components/schemas/PurchaseOrder' } } } }
  * 400: { $ref: '#/components/responses/ValidationError' }
@@ -502,11 +503,11 @@
  * /api/v1 / inventory:
  * get:
  * tags: [Inventory]
-    * summary: List inventory balances
-        * description: Returns paginated inventory balances with optional product and location filters.
+   * summary: List inventory balances
+      * description: Returns paginated inventory balances with optional product and location filters.
  * security: [{ bearerAuth: [] }]
-    * parameters: [{ $ref: '#/components/parameters/Page' }, { $ref: '#/components/parameters/PageSize' }, { $ref: '#/components/parameters/Search' }]
-        * responses:
+   * parameters: [{ $ref: '#/components/parameters/Page' }, { $ref: '#/components/parameters/PageSize' }, { $ref: '#/components/parameters/Search' }]
+      * responses:
  * 200: { description: Inventory returned, content: { application / json: { schema: { $ref: '#/components/schemas/SuccessResponse' } } } }
  * 400: { $ref: '#/components/responses/ValidationError' }
  * 401: { $ref: '#/components/responses/UnauthorizedError' }
@@ -516,10 +517,10 @@
  * /api/v1 / inventory / low - stock:
  * get:
  * tags: [Inventory]
-    * summary: List low - stock inventory
-        * description: Returns products below their reorder threshold.
+   * summary: List low - stock inventory
+      * description: Returns products below their reorder threshold.
  * security: [{ bearerAuth: [] }]
-    * responses:
+   * responses:
  * 200: { description: Low - stock inventory returned, content: { application / json: { schema: { $ref: '#/components/schemas/SuccessResponse' } } } }
  * 400: { $ref: '#/components/responses/ValidationError' }
  * 401: { $ref: '#/components/responses/UnauthorizedError' }
@@ -529,11 +530,11 @@
  * /api/v1 / inventory / product / { productId }:
  * get:
  * tags: [Inventory]
-    * summary: Get inventory for a product
-        * description: Returns aggregate quantities and location balances for a product.
+   * summary: Get inventory for a product
+      * description: Returns aggregate quantities and location balances for a product.
  * security: [{ bearerAuth: [] }]
-        * parameters: [{ $ref: '#/components/parameters/ProductId' }]
-            * responses:
+      * parameters: [{ $ref: '#/components/parameters/ProductId' }]
+         * responses:
  * 200: { description: Product inventory returned, content: { application / json: { schema: { $ref: '#/components/schemas/InventoryBalance' } } } }
  * 400: { $ref: '#/components/responses/ValidationError' }
  * 401: { $ref: '#/components/responses/UnauthorizedError' }
@@ -543,11 +544,11 @@
  * /api/v1 / inventory / location / { locationId }:
  * get:
  * tags: [Inventory]
-    * summary: List inventory at a location
-        * description: Returns paginated inventory balances for a location.
+   * summary: List inventory at a location
+      * description: Returns paginated inventory balances for a location.
  * security: [{ bearerAuth: [] }]
-        * parameters: [{ $ref: '#/components/parameters/LocationId' }, { $ref: '#/components/parameters/Page' }, { $ref: '#/components/parameters/PageSize' }]
-            * responses:
+      * parameters: [{ $ref: '#/components/parameters/LocationId' }, { $ref: '#/components/parameters/Page' }, { $ref: '#/components/parameters/PageSize' }]
+         * responses:
  * 200: { description: Location inventory returned, content: { application / json: { schema: { $ref: '#/components/schemas/SuccessResponse' } } } }
  * 400: { $ref: '#/components/responses/ValidationError' }
  * 401: { $ref: '#/components/responses/UnauthorizedError' }
@@ -557,10 +558,10 @@
  * /api/v1 / inventory / move:
  * post:
  * tags: [Inventory]
-    * summary: Move inventory
-        * description: Moves stock between warehouse locations.
+   * summary: Move inventory
+      * description: Moves stock between warehouse locations.
  * security: [{ bearerAuth: [] }]
-    * requestBody: { required: true, content: { application / json: { schema: { $ref: '#/components/schemas/MoveInventoryRequest' } } } }
+   * requestBody: { required: true, content: { application / json: { schema: { $ref: '#/components/schemas/MoveInventoryRequest' } } } }
  * responses:
  * 200: { description: Stock moved, content: { application / json: { schema: { $ref: '#/components/schemas/MessageResponse' } } } }
  * 400: { $ref: '#/components/responses/ValidationError' }
@@ -571,10 +572,10 @@
  * /api/v1 / inventory / dispatch:
  * post:
  * tags: [Inventory]
-    * summary: Dispatch inventory
-        * description: Removes stock from a location for dispatch.
+   * summary: Dispatch inventory
+      * description: Removes stock from a location for dispatch.
  * security: [{ bearerAuth: [] }]
-        * requestBody: { required: true, content: { application / json: { schema: { $ref: '#/components/schemas/DispatchInventoryRequest' } } } }
+      * requestBody: { required: true, content: { application / json: { schema: { $ref: '#/components/schemas/DispatchInventoryRequest' } } } }
  * responses:
  * 200: { description: Stock dispatched, content: { application / json: { schema: { $ref: '#/components/schemas/MessageResponse' } } } }
  * 400: { $ref: '#/components/responses/ValidationError' }
@@ -585,10 +586,10 @@
  * /api/v1 / inventory / adjust:
  * post:
  * tags: [Inventory]
-    * summary: Adjust inventory
-        * description: Sets the counted quantity for a product at a location.
+   * summary: Adjust inventory
+      * description: Sets the counted quantity for a product at a location.
  * security: [{ bearerAuth: [] }]
-    * requestBody: { required: true, content: { application / json: { schema: { $ref: '#/components/schemas/AdjustInventoryRequest' } } } }
+   * requestBody: { required: true, content: { application / json: { schema: { $ref: '#/components/schemas/AdjustInventoryRequest' } } } }
  * responses:
  * 200: { description: Inventory adjusted, content: { application / json: { schema: { $ref: '#/components/schemas/MessageResponse' } } } }
  * 400: { $ref: '#/components/responses/ValidationError' }
@@ -599,11 +600,11 @@
  * /api/v1 / inventory / transactions:
  * get:
  * tags: [Inventory]
-    * summary: List inventory transactions
-        * description: Returns a paginated inventory movement history.
+   * summary: List inventory transactions
+      * description: Returns a paginated inventory movement history.
  * security: [{ bearerAuth: [] }]
-    * parameters: [{ $ref: '#/components/parameters/Page' }, { $ref: '#/components/parameters/PageSize' }, { $ref: '#/components/parameters/Search' }]
-        * responses:
+   * parameters: [{ $ref: '#/components/parameters/Page' }, { $ref: '#/components/parameters/PageSize' }, { $ref: '#/components/parameters/Search' }]
+      * responses:
  * 200: { description: Transactions returned, content: { application / json: { schema: { $ref: '#/components/schemas/SuccessResponse' } } } }
  * 400: { $ref: '#/components/responses/ValidationError' }
  * 401: { $ref: '#/components/responses/UnauthorizedError' }
@@ -613,11 +614,11 @@
  * /api/v1 / auth / login:
  * post:
  * tags: [Authentication]
-    * summary: Authenticate a user
-        * description: Returns access and refresh tokens for valid credentials.
+   * summary: Authenticate a user
+      * description: Returns access and refresh tokens for valid credentials.
  * requestBody:
  * required: true
-    * content:
+   * content:
  * application / json:
  * schema: { $ref: '#/components/schemas/AuthLoginRequest' }
  * responses:
@@ -630,8 +631,8 @@
  * /api/v1 / auth / refresh:
  * post:
  * tags: [Authentication]
-    * summary: Refresh access tokens
-        * description: Exchanges a valid refresh token for a new token pair.
+   * summary: Refresh access tokens
+      * description: Exchanges a valid refresh token for a new token pair.
  * requestBody: { required: true, content: { application / json: { schema: { $ref: '#/components/schemas/RefreshTokenRequest' } } } }
  * responses:
  * 200: { description: Tokens refreshed, content: { application / json: { schema: { $ref: '#/components/schemas/AuthResponse' } } } }
@@ -643,8 +644,8 @@
  * /api/v1 / auth / logout:
  * post:
  * tags: [Authentication]
-    * summary: Log out a user
-        * description: Revokes the supplied refresh token.
+   * summary: Log out a user
+      * description: Revokes the supplied refresh token.
  * requestBody: { required: true, content: { application / json: { schema: { $ref: '#/components/schemas/RefreshTokenRequest' } } } }
  * responses:
  * 200: { description: Logout successful, content: { application / json: { schema: { $ref: '#/components/schemas/MessageResponse' } } } }
@@ -656,8 +657,8 @@
  * /api/v1 / auth / forgot - password:
  * post:
  * tags: [Authentication]
-    * summary: Request a password reset
-        * description: Sends a password reset instruction for the email address.
+   * summary: Request a password reset
+      * description: Sends a password reset instruction for the email address.
  * requestBody: { required: true, content: { application / json: { schema: { $ref: '#/components/schemas/ForgotPasswordRequest' } } } }
  * responses:
  * 200: { description: Reset requested, content: { application / json: { schema: { $ref: '#/components/schemas/MessageResponse' } } } }
@@ -669,8 +670,8 @@
  * /api/v1 / auth / reset - password:
  * post:
  * tags: [Authentication]
-    * summary: Reset a password
-        * description: Sets a new password using a reset token.
+   * summary: Reset a password
+      * description: Sets a new password using a reset token.
  * requestBody: { required: true, content: { application / json: { schema: { $ref: '#/components/schemas/ResetPasswordRequest' } } } }
  * responses:
  * 200: { description: Password reset, content: { application / json: { schema: { $ref: '#/components/schemas/MessageResponse' } } } }
@@ -682,10 +683,10 @@
  * /api/v1 / auth / me:
  * get:
  * tags: [Authentication]
-    * summary: Get the current user
-        * description: Returns the authenticated user's profile.
-            * security: [{ bearerAuth: [] }]
-                * responses:
+   * summary: Get the current user
+      * description: Returns the authenticated user's profile.
+         * security: [{ bearerAuth: [] }]
+            * responses:
  * 200: { description: Current user, content: { application / json: { schema: { $ref: '#/components/schemas/User' } } } }
  * 400: { $ref: '#/components/responses/ValidationError' }
  * 401: { $ref: '#/components/responses/UnauthorizedError' }
@@ -695,10 +696,10 @@
  * /api/v1 / auth / me:
  * patch:
  * tags: [Authentication]
-    * summary: Update the current user
-        * description: Updates editable profile fields for the authenticated user.
+   * summary: Update the current user
+      * description: Updates editable profile fields for the authenticated user.
  * security: [{ bearerAuth: [] }]
-        * requestBody: { required: true, content: { application / json: { schema: { $ref: '#/components/schemas/ProfileUpdateRequest' } } } }
+      * requestBody: { required: true, content: { application / json: { schema: { $ref: '#/components/schemas/ProfileUpdateRequest' } } } }
  * responses:
  * 200: { description: User updated, content: { application / json: { schema: { $ref: '#/components/schemas/User' } } } }
  * 400: { $ref: '#/components/responses/ValidationError' }
@@ -709,11 +710,11 @@
  * /api/v1 / users:
  * get:
  * tags: [Users]
-    * summary: List users
-        * description: Returns a paginated list of tenant users.
+   * summary: List users
+      * description: Returns a paginated list of tenant users.
  * security: [{ bearerAuth: [] }]
-    * parameters: [{ $ref: '#/components/parameters/Page' }, { $ref: '#/components/parameters/PageSize' }, { $ref: '#/components/parameters/Search' }]
-        * responses:
+   * parameters: [{ $ref: '#/components/parameters/Page' }, { $ref: '#/components/parameters/PageSize' }, { $ref: '#/components/parameters/Search' }]
+      * responses:
  * 200: { description: Users returned, content: { application / json: { schema: { $ref: '#/components/schemas/SuccessResponse' } } } }
  * 400: { $ref: '#/components/responses/ValidationError' }
  * 401: { $ref: '#/components/responses/UnauthorizedError' }
@@ -723,11 +724,11 @@
  * /api/v1 / users / { id }:
  * get:
  * tags: [Users]
-    * summary: Get a user
-        * description: Returns one user by ID.
+   * summary: Get a user
+      * description: Returns one user by ID.
  * security: [{ bearerAuth: [] }]
-    * parameters: [{ $ref: '#/components/parameters/Id' }]
-        * responses:
+   * parameters: [{ $ref: '#/components/parameters/Id' }]
+      * responses:
  * 200: { description: User returned, content: { application / json: { schema: { $ref: '#/components/schemas/User' } } } }
  * 400: { $ref: '#/components/responses/ValidationError' }
  * 401: { $ref: '#/components/responses/UnauthorizedError' }
@@ -737,10 +738,10 @@
  * /api/v1 / users / invite:
  * post:
  * tags: [Users]
-    * summary: Invite a user
-        * description: Creates an invited user with a temporary password.
+   * summary: Invite a user
+      * description: Creates an invited user with a temporary password.
  * security: [{ bearerAuth: [] }]
-    * requestBody: { required: true, content: { application / json: { schema: { $ref: '#/components/schemas/UserInviteRequest' } } } }
+   * requestBody: { required: true, content: { application / json: { schema: { $ref: '#/components/schemas/UserInviteRequest' } } } }
  * responses:
  * 201: { description: User invited, content: { application / json: { schema: { $ref: '#/components/schemas/User' } } } }
  * 400: { $ref: '#/components/responses/ValidationError' }
@@ -751,11 +752,11 @@
  * /api/v1 / users / { id } / role:
  * patch:
  * tags: [Users]
-    * summary: Update a user's role
-        * description: Changes the role assigned to a tenant user.
+   * summary: Update a user's role
+      * description: Changes the role assigned to a tenant user.
  * security: [{ bearerAuth: [] }]
-    * parameters: [{ $ref: '#/components/parameters/Id' }]
-        * requestBody: { required: true, content: { application / json: { schema: { $ref: '#/components/schemas/UserRoleRequest' } } } }
+   * parameters: [{ $ref: '#/components/parameters/Id' }]
+      * requestBody: { required: true, content: { application / json: { schema: { $ref: '#/components/schemas/UserRoleRequest' } } } }
  * responses:
  * 200: { description: Role updated, content: { application / json: { schema: { $ref: '#/components/schemas/User' } } } }
  * 400: { $ref: '#/components/responses/ValidationError' }
@@ -766,11 +767,11 @@
  * /api/v1 / users / { id } / deactivate:
  * patch:
  * tags: [Users]
-    * summary: Deactivate a user
-        * description: Marks a tenant user as inactive.
+   * summary: Deactivate a user
+      * description: Marks a tenant user as inactive.
  * security: [{ bearerAuth: [] }]
-    * parameters: [{ $ref: '#/components/parameters/Id' }]
-        * responses:
+   * parameters: [{ $ref: '#/components/parameters/Id' }]
+      * responses:
  * 200: { description: User deactivated, content: { application / json: { schema: { $ref: '#/components/schemas/MessageResponse' } } } }
  * 400: { $ref: '#/components/responses/ValidationError' }
  * 401: { $ref: '#/components/responses/UnauthorizedError' }
@@ -780,11 +781,11 @@
  * /api/v1 / warehouses:
  * get:
  * tags: [Warehouses]
-    * summary: List warehouses
-        * description: Returns a paginated list of warehouses.
+   * summary: List warehouses
+      * description: Returns a paginated list of warehouses.
  * security: [{ bearerAuth: [] }]
-    * parameters: [{ $ref: '#/components/parameters/Page' }, { $ref: '#/components/parameters/PageSize' }, { $ref: '#/components/parameters/Search' }]
-        * responses:
+   * parameters: [{ $ref: '#/components/parameters/Page' }, { $ref: '#/components/parameters/PageSize' }, { $ref: '#/components/parameters/Search' }]
+      * responses:
  * 200: { description: Warehouses returned, content: { application / json: { schema: { $ref: '#/components/schemas/SuccessResponse' } } } }
  * 400: { $ref: '#/components/responses/ValidationError' }
  * 401: { $ref: '#/components/responses/UnauthorizedError' }
@@ -793,10 +794,10 @@
  * 500: { $ref: '#/components/responses/InternalServerError' }
  * post:
  * tags: [Warehouses]
-    * summary: Create a warehouse
-        * description: Creates an active warehouse for the tenant.
+   * summary: Create a warehouse
+      * description: Creates an active warehouse for the tenant.
  * security: [{ bearerAuth: [] }]
-        * requestBody: { required: true, content: { application / json: { schema: { $ref: '#/components/schemas/WarehouseRequest' } } } }
+      * requestBody: { required: true, content: { application / json: { schema: { $ref: '#/components/schemas/WarehouseRequest' } } } }
  * responses:
  * 201: { description: Warehouse created, content: { application / json: { schema: { $ref: '#/components/schemas/Warehouse' } } } }
  * 400: { $ref: '#/components/responses/ValidationError' }
@@ -807,11 +808,11 @@
  * /api/v1 / warehouses / { id }:
  * get:
  * tags: [Warehouses]
-    * summary: Get a warehouse
-        * description: Returns one warehouse by ID.
+   * summary: Get a warehouse
+      * description: Returns one warehouse by ID.
  * security: [{ bearerAuth: [] }]
-    * parameters: [{ $ref: '#/components/parameters/Id' }]
-        * responses:
+   * parameters: [{ $ref: '#/components/parameters/Id' }]
+      * responses:
  * 200: { description: Warehouse returned, content: { application / json: { schema: { $ref: '#/components/schemas/Warehouse' } } } }
  * 400: { $ref: '#/components/responses/ValidationError' }
  * 401: { $ref: '#/components/responses/UnauthorizedError' }
@@ -820,11 +821,11 @@
  * 500: { $ref: '#/components/responses/InternalServerError' }
  * patch:
  * tags: [Warehouses]
-    * summary: Update a warehouse
-        * description: Updates warehouse details.
+   * summary: Update a warehouse
+      * description: Updates warehouse details.
  * security: [{ bearerAuth: [] }]
-    * parameters: [{ $ref: '#/components/parameters/Id' }]
-        * requestBody: { required: true, content: { application / json: { schema: { $ref: '#/components/schemas/WarehouseRequest' } } } }
+   * parameters: [{ $ref: '#/components/parameters/Id' }]
+      * requestBody: { required: true, content: { application / json: { schema: { $ref: '#/components/schemas/WarehouseRequest' } } } }
  * responses:
  * 200: { description: Warehouse updated, content: { application / json: { schema: { $ref: '#/components/schemas/Warehouse' } } } }
  * 400: { $ref: '#/components/responses/ValidationError' }
@@ -835,11 +836,11 @@
  * /api/v1 / warehouses / { id } / locations:
  * get:
  * tags: [Warehouses]
-    * summary: List warehouse locations
-        * description: Returns locations belonging to a warehouse.
+   * summary: List warehouse locations
+      * description: Returns locations belonging to a warehouse.
  * security: [{ bearerAuth: [] }]
-    * parameters: [{ $ref: '#/components/parameters/Id' }, { $ref: '#/components/parameters/Page' }, { $ref: '#/components/parameters/PageSize' }]
-        * responses:
+   * parameters: [{ $ref: '#/components/parameters/Id' }, { $ref: '#/components/parameters/Page' }, { $ref: '#/components/parameters/PageSize' }]
+      * responses:
  * 200: { description: Locations returned, content: { application / json: { schema: { $ref: '#/components/schemas/SuccessResponse' } } } }
  * 400: { $ref: '#/components/responses/ValidationError' }
  * 401: { $ref: '#/components/responses/UnauthorizedError' }
@@ -848,11 +849,11 @@
  * 500: { $ref: '#/components/responses/InternalServerError' }
  * post:
  * tags: [Warehouses]
-    * summary: Create a warehouse location
-        * description: Adds a location under a warehouse.
+   * summary: Create a warehouse location
+      * description: Adds a location under a warehouse.
  * security: [{ bearerAuth: [] }]
-    * parameters: [{ $ref: '#/components/parameters/Id' }]
-        * requestBody: { required: true, content: { application / json: { schema: { $ref: '#/components/schemas/LocationRequest' } } } }
+   * parameters: [{ $ref: '#/components/parameters/Id' }]
+      * requestBody: { required: true, content: { application / json: { schema: { $ref: '#/components/schemas/LocationRequest' } } } }
  * responses:
  * 201: { description: Location created, content: { application / json: { schema: { $ref: '#/components/schemas/Location' } } } }
  * 400: { $ref: '#/components/responses/ValidationError' }
@@ -863,11 +864,11 @@
  * /api/v1 / warehouses / locations / { locationId }:
  * patch:
  * tags: [Warehouses]
-    * summary: Update a location
-        * description: Updates warehouse location details.
+   * summary: Update a location
+      * description: Updates warehouse location details.
  * security: [{ bearerAuth: [] }]
-    * parameters: [{ $ref: '#/components/parameters/LocationId' }]
-        * requestBody: { required: true, content: { application / json: { schema: { $ref: '#/components/schemas/LocationRequest' } } } }
+   * parameters: [{ $ref: '#/components/parameters/LocationId' }]
+      * requestBody: { required: true, content: { application / json: { schema: { $ref: '#/components/schemas/LocationRequest' } } } }
  * responses:
  * 200: { description: Location updated, content: { application / json: { schema: { $ref: '#/components/schemas/Location' } } } }
  * 400: { $ref: '#/components/responses/ValidationError' }
@@ -877,11 +878,11 @@
  * 500: { $ref: '#/components/responses/InternalServerError' }
  * delete:
  * tags: [Warehouses]
-    * summary: Delete a location
-        * description: Deactivates a warehouse location.
+   * summary: Delete a location
+      * description: Deactivates a warehouse location.
  * security: [{ bearerAuth: [] }]
-    * parameters: [{ $ref: '#/components/parameters/LocationId' }]
-        * responses:
+   * parameters: [{ $ref: '#/components/parameters/LocationId' }]
+      * responses:
  * 200: { description: Location deleted, content: { application / json: { schema: { $ref: '#/components/schemas/MessageResponse' } } } }
  * 400: { $ref: '#/components/responses/ValidationError' }
  * 401: { $ref: '#/components/responses/UnauthorizedError' }
