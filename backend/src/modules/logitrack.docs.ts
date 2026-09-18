@@ -207,7 +207,7 @@
  *       403: { $ref: '#/components/responses/ForbiddenError' }
  *       404: { $ref: '#/components/responses/NotFoundError' }
  *       500: { $ref: '#/components/responses/InternalServerError' }
- */
+ *
  * /api/v1 / notifications:
  * get:
  * tags: [Notifications]
