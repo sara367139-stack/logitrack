@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:logitrack/core/constants/app_constants.dart';
 import 'package:logitrack/core/localization/app_localizations.dart';
 import 'package:logitrack/core/routing/app_router.dart';
+import 'package:logitrack/core/services/api_client.dart';
 import 'package:logitrack/core/services/storage_service.dart';
 import 'package:logitrack/core/theme/app_theme.dart';
 import 'package:logitrack/core/utils/validators.dart';
@@ -24,6 +25,7 @@ class _LoginPageState extends State<LoginPage> {
   bool _remember = true;
   bool _obscure = true;
   bool _loading = false;
+  final _api = ApiClient();
 
   @override
   void initState() {
@@ -53,11 +55,36 @@ class _LoginPageState extends State<LoginPage> {
 
     // ✅ removed: await Future.delayed(const Duration(milliseconds: 900));
 
-    await StorageService.login(
-      name: StorageService.userBadge.isNotEmpty ? 'User' : 'Sarah Jenkins',
-      badge: _badge.text.trim(),
-      remember: _remember,
-    );
+    try {
+      final response = await _api.post(
+        '/auth/login',
+        body: {
+          'email': _badge.text.trim(),
+          'password': _pin.text,
+        },
+      );
+      final data = response['data'] as Map<String, dynamic>;
+      final user = data['user'] as Map<String, dynamic>;
+      await StorageService.login(
+        name: '${user['firstName'] ?? ''} ${user['lastName'] ?? ''}'.trim(),
+        badge: _badge.text.trim(),
+        remember: _remember,
+        accessToken: data['accessToken']?.toString(),
+        refreshToken: data['refreshToken']?.toString(),
+      );
+    } on ApiException catch (error) {
+      if (mounted) {
+        setState(() => _loading = false);
+        AppSnackBar.error(context, error.message);
+      }
+      return;
+    } catch (_) {
+      if (mounted) {
+        setState(() => _loading = false);
+        AppSnackBar.error(context, 'Could not connect to the server.');
+      }
+      return;
+    }
 
     if (!mounted) return;
     setState(() => _loading = false);
@@ -495,8 +522,7 @@ class _LoginPageState extends State<LoginPage> {
                             child: Divider(color: AppColors.border),
                           ),
                           Padding(
-                            padding:
-                                const EdgeInsets.symmetric(horizontal: 10),
+                            padding: const EdgeInsets.symmetric(horizontal: 10),
                             child: Text(
                               context.tr('alternativeMethod'),
                               style: TextStyle(

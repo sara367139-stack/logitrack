@@ -19,22 +19,31 @@ class StorageService {
       _prefs.setBool(StorageKeys.onboardingSeen, true);
 
   // ===== Auth =====
-  static bool get isLoggedIn =>
-      _prefs.getBool(StorageKeys.isLoggedIn) ?? false;
+  static bool get isLoggedIn => _prefs.getBool(StorageKeys.isLoggedIn) ?? false;
 
   static Future<void> login({
     required String name,
     required String badge,
     bool remember = true,
+    String? accessToken,
+    String? refreshToken,
   }) async {
     await _prefs.setBool(StorageKeys.isLoggedIn, true);
     await _prefs.setString(StorageKeys.userName, name);
     await _prefs.setString(StorageKeys.userBadge, badge);
     await _prefs.setBool(StorageKeys.rememberMe, remember);
+    if (accessToken != null) {
+      await _prefs.setString(StorageKeys.accessToken, accessToken);
+    }
+    if (refreshToken != null) {
+      await _prefs.setString(StorageKeys.refreshToken, refreshToken);
+    }
   }
 
   static Future<void> logout() async {
     await _prefs.setBool(StorageKeys.isLoggedIn, false);
+    await _prefs.remove(StorageKeys.accessToken);
+    await _prefs.remove(StorageKeys.refreshToken);
     if (!rememberMe) {
       await _prefs.remove(StorageKeys.userBadge);
     }
@@ -46,8 +55,11 @@ class StorageService {
   static String get userBadge =>
       _prefs.getString(StorageKeys.userBadge) ?? 'WH-OP-8924';
 
-  static bool get rememberMe =>
-      _prefs.getBool(StorageKeys.rememberMe) ?? true;
+  static bool get rememberMe => _prefs.getBool(StorageKeys.rememberMe) ?? true;
+
+  static String? get accessToken => _prefs.getString(StorageKeys.accessToken);
+
+  static String? get refreshToken => _prefs.getString(StorageKeys.refreshToken);
 
   // ===== Language =====
   static String get languageCode =>
@@ -59,16 +71,14 @@ class StorageService {
   static bool get isArabic => languageCode == 'ar';
 
   // ===== Theme =====
-  static bool get isDarkMode =>
-      _prefs.getBool(StorageKeys.darkMode) ?? false;
+  static bool get isDarkMode => _prefs.getBool(StorageKeys.darkMode) ?? false;
 
   static Future<void> setDarkMode(bool v) =>
       _prefs.setBool(StorageKeys.darkMode, v);
 
   // ===== Warehouse =====
   static String get warehouse =>
-      _prefs.getString(StorageKeys.warehouse) ??
-      AppConstants.defaultWarehouse;
+      _prefs.getString(StorageKeys.warehouse) ?? AppConstants.defaultWarehouse;
 
   static Future<void> setWarehouse(String w) =>
       _prefs.setString(StorageKeys.warehouse, w);
